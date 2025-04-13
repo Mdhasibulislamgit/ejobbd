@@ -50,7 +50,11 @@ export const postJob = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    console.log("Error in postJob:", error); // Corrected log message
+    return res.status(500).json({ // Moved inside catch block
+        message: "Server error while creating job.",
+        success: false,
+    });
   }
 };
 // student k liye
@@ -80,7 +84,11 @@ export const getAllJobs = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    console.log("Error in getAllJobs:", error);
+    return res.status(500).json({ // Added error response
+        message: "Server error while fetching jobs.",
+        success: false,
+    });
   }
 };
 // student
@@ -98,7 +106,11 @@ export const getJobById = async (req, res) => {
     }
     return res.status(200).json({ job, success: true });
   } catch (error) {
-    console.log(error);
+    console.log("Error in getJobById:", error);
+    return res.status(500).json({ // Added error response
+        message: "Server error while fetching job details.",
+        success: false,
+    });
   }
 };
 // admin kitne job create kra hai abhi tk
@@ -120,6 +132,10 @@ export const getAdminJobs = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    console.log("Error in getAdminJobs:", error);
+    return res.status(500).json({ // Added error response
+        message: "Server error while fetching admin jobs.",
+        success: false,
+    });
   }
 };
